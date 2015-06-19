@@ -1,0 +1,24 @@
+\begin{table*}[h]
+\centering
+\small
+\begin{tabular}{|c|p{4.8in}|c|c|}
+\hline
+\rowcolor[rgb]{0,0,0} & \centering\textcolor{white}{\textbf{Sequence}}  & \textcolor{white}{\textbf{Len.}}  & \textcolor{white}{$HHtc^*$}\\ \hline
+\textcolor{white}{\textbf{S18\_04}} & H$_{2}$P$_{5}$H$_{2}$P$_{3}$HP$_{3}$HP & 18 & 4 \\ \hline
+\textcolor{white}{\textbf{S18\_08}} & HPHPH$_{3}$P$_{3}$H$_{4}$P$_{2}$H$_{2}$ & 18 & 8 \\ \hline
+\textcolor{white}{\textbf{S18\_09}} & PHP$_{2}$HPH$_{3}$PH$_{2}$PH$_{5}$ & 18 & 9 \\ \hline
+\textcolor{white}{\textbf{S20\_09}} & HPHP$_{2}$H$_{2}$PHP$_{2}$HPH$_{2}$P$_{2}$HPH & 20 & 9 \\ \hline
+\textcolor{white}{\textbf{S20\_10}} & H$_{3}$P$_{2}$HPHPHP$_{2}$HPHPHP$_{2}$H & 20 & 10 \\ \hline
+\textcolor{white}{\textbf{S24\_09}} & H$_{2}$P$_{2}$HP$_{2}$HP$_{2}$HP$_{2}$HP$_{2}$HP$_{2}$HP$_{2}$H$_{2}$ & 24 & 9 \\ \hline
+\textcolor{white}{\textbf{S25\_08}} & P$_{2}$HP$_{2}$H$_{2}$P$_{4}$H$_{2}$P$_{4}$H$_{2}$P$_{4}$H$_{2}$ & 25 & 8 \\ \hline
+\textcolor{white}{\textbf{S36\_14}} & P$_{3}$H$_{2}$P$_{2}$H$_{2}$P$_{5}$H$_{7}$P$_{2}$H$_{2}$P$_{4}$H$_{2}$P$_{2}$HP$_{2}$ & 36 & 14 \\ \hline
+\textcolor{white}{\textbf{S48\_23}} & P$_{2}$HP$_{2}$H$_{2}$P$_{2}$H$_{2}$P$_{5}$H$_{10}$P$_{6}$H$_{2}$P$_{2}$H$_{2}$P$_{2}$HP$_{2}$H$_{5}$ & 48 & 23 \\ \hline
+\textcolor{white}{\textbf{S50\_21}} & H$_{2}$PHPHPHPH$_{4}$PHP$_{3}$HP$_{3}$HP$_{4}$HP$_{3}$HP$_{3}$HPH$_{4}$PHPHPHPH$_{2}$ & 50 & 21 \\ \hline
+\textcolor{white}{\textbf{S60\_36}} & P$_{2}$H$_{3}$PH$_{8}$P$_{3}$H$_{10}$PHP$_{3}$H$_{12}$P$_{4}$H$_{6}$PH$_{2}$PHP & 60 & 36 \\ \hline
+\textcolor{white}{\textbf{S64\_42}} & H$_{12}$PHPHP$_{2}$H$_{2}$P$_{2}$H$_{2}$P$_{2}$HP$_{2}$H$_{2}$P$_{2}$H$_{2}$P$_{2}$HP$_{2}$H$_{2}$P$_{2}$H$_{2}$P$_{2}$HPHPH$_{12}$ & 64 & 42 \\ \hline
+\textcolor{white}{\textbf{S85\_53}} & H$_{4}$P$_{4}$H$_{12}$P$_{6}$H$_{12}$P$_{3}$H$_{12}$P$_{3}$H$_{12}$P$_{3}$HP$_{2}$H$_{2}$P$_{2}$H$_{2}$P$_{2}$HPH & 85 & 53 \\ \hline
+\textcolor{white}{\textbf{S100\_48}} & P$_{6}$HPH$_{2}$P$_{5}$H$_{3}$PH$_{5}$PH$_{2}$P$_{4}$H$_{2}$P$_{2}$H$_{2}$PH$_{5}$PH$_{10}$PH$_{2}$PH$_{7}$P$_{11}$H$_{7}$P$_{2}$HPH$_{3}$P$_{6}$HPH$_{2}$ & 100 & 48 \\ \hline
+\textcolor{white}{\textbf{S100\_50}} & P$_{3}$H$_{2}$P$_{2}$H$_{4}$P$_{2}$H$_{3}$PH$_{2}$PH$_{2}$PH$_{4}$P$_{8}$H$_{6}$P$_{2}$H$_{6}$P$_{9}$HPH$_{2}$PH$_{11}$P$_{2}$H$_{3}$PH$_{2}$PHP$_{2}$HPH$_{3}$P$_{6}$H$_{3}$ & 100 & 50 \\ \hline
+\end{tabular}
+\caption{HP benchmark sequences adopted for this study.}\label{tab:sequences}
+\end{table*}

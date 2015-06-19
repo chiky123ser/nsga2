@@ -1,0 +1,24 @@
+\begin{table*}[h]
+\centering
+\small
+\begin{tabular}{|c|p{4.8in}|c|c|}
+\hline
+\rowcolor[rgb]{0,0,0} & \centering\textcolor{white}{\textbf{Sequence}}  & \textcolor{white}{\textbf{Len.}}  & \textcolor{white}{$HHtc^*$}\\ \hline
+\textcolor{white}{\textbf{S20\_11}} & HPHP$_{2}$H$_{2}$PHP$_{2}$HPH$_{2}$P$_{2}$HPH & 20 & 11 \\ \hline
+\textcolor{white}{\textbf{S24\_13}} & H$_{2}$P$_{2}$HP$_{2}$HP$_{2}$HP$_{2}$HP$_{2}$HP$_{2}$HP$_{2}$H$_{2}$ & 24 & 13 \\ \hline
+\textcolor{white}{\textbf{S25\_09}} & P$_{2}$HP$_{2}$H$_{2}$P$_{4}$H$_{2}$P$_{4}$H$_{2}$P$_{4}$H$_{2}$ & 25 & 9 \\ \hline
+\textcolor{white}{\textbf{S36\_18}} & P$_{3}$H$_{2}$P$_{2}$H$_{2}$P$_{5}$H$_{7}$P$_{2}$H$_{2}$P$_{4}$H$_{2}$P$_{2}$HP$_{2}$ & 36 & 18 \\ \hline
+\textcolor{white}{\textbf{S46\_32}} & P$_{2}$H$_{3}$PH$_{3}$P$_{3}$HPH$_{2}$PH$_{2}$P$_{2}$HPH$_{4}$PHP$_{2}$H$_{5}$PHPH$_{2}$P$_{2}$H$_{2}$P & 46 & 32 \\ \hline
+\textcolor{white}{\textbf{S48\_32}} & P$_{2}$HP$_{2}$H$_{2}$P$_{2}$H$_{2}$P$_{5}$H$_{10}$P$_{6}$H$_{2}$P$_{2}$H$_{2}$P$_{2}$HP$_{2}$H$_{5}$ & 48 & 32 \\ \hline
+\textcolor{white}{\textbf{S50\_31}} & H$_{2}$PHPHPHPH$_{4}$PHP$_{3}$HP$_{3}$HP$_{4}$HP$_{3}$HP$_{3}$HPH$_{4}$PHPHPHPH$_{2}$ & 50 & 31 \\ \hline
+\textcolor{white}{\textbf{S58\_44}} & PHPH$_{3}$PH$_{3}$P$_{2}$H$_{2}$PHPH$_{2}$PH$_{3}$PHPHPH$_{2}$P$_{2}$H$_{3}$P$_{2}$HPHP$_{4}$HP$_{2}$HP$_{2}$H$_{2}$P$_{2}$HP$_{2}$H & 58 & 44 \\ \hline
+\textcolor{white}{\textbf{S60\_52}} & P$_{2}$H$_{3}$PH$_{8}$P$_{3}$H$_{10}$PHP$_{3}$H$_{12}$P$_{4}$H$_{6}$PH$_{2}$PHP & 60 & 52 \\ \hline
+\textcolor{white}{\textbf{S64\_55}} & H$_{12}$PHPHP$_{2}$H$_{2}$P$_{2}$H$_{2}$P$_{2}$HP$_{2}$H$_{2}$P$_{2}$H$_{2}$P$_{2}$HP$_{2}$H$_{2}$P$_{2}$H$_{2}$P$_{2}$HPHPH$_{12}$ & 64 & 55 \\ \hline
+\textcolor{white}{\textbf{S67\_56}} & PHPH$_{2}$PH$_{2}$PHP$_{2}$H$_{3}$P$_{3}$HPH$_{2}$PH$_{2}$PHP$_{2}$H$_{3}$P$_{3}$HPH$_{2}$PH$_{2}$PHP$_{2}$H$_{3}$P$_{3}$HPH$_{2}$PH$_{2}$PHP$_{2}$H$_{3}$P & 67 & 56 \\ \hline
+\textcolor{white}{\textbf{S88\_72}} & PHPH$_{2}$PH$_{2}$PHP$_{2}$H$_{2}$P$_{2}$HP$_{2}$HP$_{2}$HP$_{2}$HP$_{2}$HP$_{2}$H$_{2}$P$_{2}$H$_{3}$P$_{2}$H$_{3}$P$_{2}$H$_{3}$P$_{2}$H$_{3}$P$_{2}$HPH$_{2}$PH$_{2}$PHP$_{2}$HP$_{2}$HP$_{2}$H$_{2}$P$_{2}$HP$_{2}$HP$_{2}$H$_{2}$P$_{2}$HP & 88 & 72 \\ \hline
+\textcolor{white}{\textbf{S103\_56}} & P$_{2}$H$_{2}$P$_{5}$H$_{2}$P$_{2}$H$_{2}$PHP$_{2}$HP$_{7}$HP$_{3}$H$_{2}$PH$_{2}$P$_{6}$HP$_{2}$HPHP$_{2}$HP$_{5}$H$_{3}$P$_{4}$H$_{2}$PH$_{2}$P$_{5}$H$_{2}$P$_{4}$H$_{4}$PHP$_{8}$H$_{5}$P$_{2}$HP$_{2}$ & 103 & 56 \\ \hline
+\textcolor{white}{\textbf{S124\_71}} & P$_{3}$H$_{3}$PHP$_{4}$HP$_{5}$H$_{2}$P$_{4}$H$_{2}$P$_{2}$H$_{2}$P$_{4}$HP$_{4}$HP$_{2}$HP$_{2}$H$_{2}$P$_{3}$H$_{2}$PHPH$_{3}$P$_{4}$H$_{3}$P$_{6}$H$_{2}$P$_{2}$HP$_{2}$HPHP$_{2}$HP$_{7}$HP$_{2}$H$_{3}$P$_{4}$HP$_{3}$H$_{5}$P$_{4}$H$_{2}$PHPHPHPH & 124 & 71 \\ \hline
+\textcolor{white}{\textbf{S136\_80}} & HP$_{5}$HP$_{4}$HPH$_{2}$PH$_{2}$P$_{4}$HPH$_{3}$P$_{4}$HPHPH$_{4}$P$_{11}$HP$_{2}$HP$_{3}$HPH$_{2}$P$_{3}$H$_{2}$P$_{2}$HP$_{2}$HPHPHP$_{8}$HP$_{3}$H$_{6}$P$_{3}$H$_{2}$P$_{2}$H$_{3}$P$_{3}$H$_{2}$PH$_{5}$P$_{9}$HP$_{4}$HPHP$_{4}$ & 136 & 80 \\ \hline
+\end{tabular}
+\caption{HP benchmark sequences adopted for this study.}\label{tab:sequences}
+\end{table*}

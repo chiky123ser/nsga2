@@ -1,0 +1,197 @@
+#! /usr/bin/python
+import os, sys
+import time
+
+##################################################
+
+workdir 		= os.getcwd() 					# Work directory
+outdir 		= "%s/StdOutErr" % workdir		# Std. error and std. output
+qsubscripts 	= "%s/qsub_scripts" % workdir	# Directory where the scripts for qsub are to be saved
+
+srcdir = workdir[:workdir.rfind("/")]	# Directory where the lattice configuration and instances are
+srcdir = srcdir[:srcdir.rfind("/")]	# Directory where the lattice configuration and instances are
+
+# Nodos y Jobs
+
+# NEPTUNO
+NODOS_ertello = 0		# 24 Max
+NODOS_q3 = 0		# 40 Max
+
+# MINERVA
+NODOS_fast = 10		# 12 Max
+NODOS_medium = 15	# 15 Max
+
+NODOS = ["q3"]*NODOS_q3 + ["ertello"]*NODOS_ertello + ["fast"]*NODOS_fast + ["medium"]*NODOS_medium
+MaxJobs = len(NODOS)	
+
+##################################################
+
+
+lattices = [
+		[	
+			"2D_Square", 
+			['2d1', '2d2', '2d3', '2d4', '2d5', '2d6', '2d7', '2d8', '2d9', '2d10', '2d11', '2d12', '2d13', '2d14', '2d15'] 
+		]
+		,
+		[
+			"3D_Cubic", 
+			['3d1', '3d2', '3d3', '3d4', '3d5', '3d6', '3d7', '3d8', '3d9', '3d10', '3d11', '3d12', '3d13', '3d14', '3d15']
+		]
+]
+
+strategies = [
+			#~ ['SO', 'D85', 'RNDWALK'], 
+			#~ ['SO', 'D85', 'NONE'], 
+			#~ ['MO', 'PARITY', 'NONE'], 
+			#~ ['MO', 'LOCALITY', '3'], 
+			#~ ['MO', 'LOCALITY', '5'], 
+			#~ ['MO', 'LOCALITY', '7'], 
+			#~ ['MO', 'LOCALITY', '9'], 
+			#~ ['MO', 'LOCALITY', '11'], 
+			#~ ['MO', 'LOCALITY', '13'], 
+			#~ ['MO', 'LOCALITY', '15'], 
+			#~ ['MO', 'LOCALITY', '17'], 
+			#~ ['MO', 'LOCALITY', '19'], 
+			#~ ['MO', 'LOCALITY', '21'], 
+			#~ ['MO', 'DEC2', 'DET'], 
+			#~ ['MO', 'DEC2', 'RND'], 
+			#~ ['MO', 'DEC2', 'DYN'], 
+			#~ ['MO', 'DEC2', 'DYN10'], 
+			#~ ['MO', 'DEC2', 'DYN20'],
+			#~ ['MO', 'DEC2', 'DYN30'],
+			
+			['MO', 'MOK99_PARITY', 'NONE'], 
+			['MO', 'MOK99_LOCALITY', '5'], 
+			['MO', 'MOK99_LOCALITY', '7'], 
+			['MO', 'MOK99_LOCALITY', '9'], 
+]
+
+max_evals = 1000000
+reported_each = 50000
+runs = 100
+
+##################################################
+
+# Create output directory
+os.popen("rm -rf %s %s" % (qsubscripts, outdir))
+try: 
+	os.makedirs(outdir)
+	os.makedirs(qsubscripts)
+except:
+	print "Directory already exists..."
+
+job = 0
+TotalJobs = 0
+bandera = 0
+##################################################
+
+
+def addjob(strexec):
+	global job
+	global TotalJobs
+	global bandera
+	
+	job += 1
+	if bandera==0: 
+		TotalJobs += 1
+								
+	# Generate qsub scripts
+	fp = open("%s/qsub_job%d" % (qsubscripts, job), "a")
+
+	fp.write(strexec)
+	fp.close()
+
+	if job == MaxJobs: 
+		job = 0
+		TotalJobs = MaxJobs
+		bandera = 1	
+		
+
+##################################################
+
+for lat in lattices:
+		
+	lattice = lat[0]
+	instances = lat[1]
+	
+	for instance in instances:		
+
+		file = "%s/Instances/%s/%s.hp" % ( srcdir, lattice, instance)					
+		f = open(file, 'r')
+		lines = f.readlines()
+		f.close()	
+		length = int(lines[0])	
+		optimo = int(lines[2])
+		
+		for strategy in strategies:		
+		
+			path = "%s/Results_11EA/%s/%s/11EA_%s_%s_%s/" % (workdir, lattice, instance, strategy[0], strategy[1], strategy[2])
+			try: 
+				os.makedirs(path)
+			except:
+				a = 1
+		
+			for run in range(1,runs+1):				
+
+				output = "%srun%d.dat" % ( path, run)
+				
+				# ./11ea ../../Lattices/2D_Square.lat ../../Instances/2D_Square/2d4.hp SO D85 NONE 1000000 1
+				strexec = "%s/11ea %s/Lattices/%s.lat %s/Instances/%s/%s.hp %s %s %s %d %d > %s\n" % (workdir, srcdir, lattice, srcdir, lattice, instance, strategy[0], strategy[1], strategy[2], max_evals, run, output)
+				
+				
+				# Verificar si existe archivo de salida
+				if os.path.isfile(output):
+					
+					# Verificar si el archivo esta correcto
+					f = open(output, 'r')
+					lines = f.readlines()
+					f.close()
+					
+					# Si el archivo esta vacio, agregar ejecucion
+					if len(lines) == 0:
+						addjob(strexec)
+					else:
+						
+						# La primera linea debe corresponder a "reported_each" evaluaciones, o puede ser diferente pero ser la unica fila
+						line = lines[0]
+						line = line.split("\t")
+						
+						if int(line[0]) == reported_each or len(lines) == 1:
+							
+							# La ultima linea debe tener el numero maximo de evaluaciones, o puede ser inferior el numero de evaluaciones si se encontro el optimo antes
+							line = lines[len(lines)-1]
+							line = line.split("\t")
+							if int(line[0]) != max_evals and int(line[1]) != optimo:		
+								addjob(strexec)
+							
+						else: 
+							# La primera linea no es la primera, y no corresponde a reported_each
+							addjob(strexec)														
+
+				else:
+					# Si no existe archivo de salida, agregar ejecucion
+					addjob(strexec)	
+				
+for job in range(1, TotalJobs+1):
+	
+	# Set permisions to qsub script
+	os.popen("chmod +x %s/qsub_job%d" % (qsubscripts, job))	
+
+	# Execute qsub script	
+	qsubstr = "qsub -q %s -d %s -o %s -e %s %s/qsub_job%d" % (NODOS[job-1], workdir, outdir, outdir, qsubscripts, job)		
+	print qsubstr
+	os.popen(qsubstr)	
+	time.sleep(2)
+	
+print ""
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	

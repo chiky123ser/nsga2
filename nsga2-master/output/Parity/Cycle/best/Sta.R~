@@ -1,0 +1,2 @@
+file="a1_best_pop.out4_1"
+datos= read.table(file)

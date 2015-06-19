@@ -1,0 +1,6 @@
+servando@servando-Aspire-V3-572G:~/Documents/Multiobjetivizacion/Multiobjectivization/11EA$ LF=/home/servando/Documents/Multiobjetivizacion/Lattices/2D_Square.lat
+servando@servando-Aspire-V3-572G:~/Documents/Multiobjetivizacion/Multiobjectivization/11EA$ echo $LF
+/home/servando/Documents/Multiobjetivizacion/Lattices/2D_Square.lat
+servando@servando-Aspire-V3-572G:~/Documents/Multiobjetivizacion/Multiobjectivization/11EA$ PI=/home/servando/Documents/Multiobjetivizacion/Instances/2D_Square/2d4.hp
+servando@servando-Aspire-V3-572G:~/Documents/Multiobjetivizacion/Multiobjectivization/11EA$ ./11ea $LF $PI SO D85 DET 100 10
+
