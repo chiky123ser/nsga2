@@ -555,7 +555,7 @@ void NON_WRAPPING_ORDER_CROSSOVER(struct conformation_def *current_solution, str
 
 void cruce_static(struct conformation_def *current_solution, struct conformation_def *current_solution2,struct conformation_def *hijo1, struct conformation_def *hijo2){
 
-	int *cr,temp=0,valid1,valid2,punto;
+	int *cr,temp=0,/*valid1,valid2,*/punto;
 	// Make a copy of the conformation
 
 	punto=floor(encoding_len/8);
@@ -590,15 +590,14 @@ void cruce_static(struct conformation_def *current_solution, struct conformation
 	update_coordinates(hijo1,0,encoding_len-1);
 	update_coordinates(hijo2,0,encoding_len-1);
 
-	valid1=isValid(hijo1);
-	valid2=isValid(hijo2);
 
-	if (!valid1)
+
+	if (!isValid(hijo1))
 	{
 		copy_conformation(current_solution, hijo1);
 	}
 
-		if (!valid2)
+		if (!isValid(hijo2))
 	{
 		copy_conformation(current_solution2, hijo2);
 	}
@@ -658,15 +657,10 @@ void cruce_two_point(struct conformation_def *current_solution, struct conformat
 
 	copy_conformation(current_solution, hijo1);
 	copy_conformation(current_solution2, hijo2);
-	
+	do{
 	intTemp1=rndpsp.RandInt(0, encoding_len-1);
 	intTemp2=rndpsp.RandInt(0, encoding_len-1);
-	
-	while(intTemp1>=intTemp2){
-		
-		intTemp1=rndpsp.RandInt(0, encoding_len-1);
-		intTemp2=rndpsp.RandInt(0, encoding_len-1);
-	}
+	}while(intTemp1>=intTemp2);
 
 	
 	for (int i = intTemp1; i <= intTemp2; ++i)
@@ -676,11 +670,12 @@ void cruce_two_point(struct conformation_def *current_solution, struct conformat
 		hijo2->absolute_encoding[i]=temp;	
 	}
 		
-	
+	update_coordinates(hijo1,0,encoding_len-1);
+	update_coordinates(hijo2,0,encoding_len-1);
 
 		
-	update_coordinates(hijo1,intTemp1,intTemp2);
-	update_coordinates(hijo2,intTemp1,intTemp2);
+	/*update_coordinates(hijo1,intTemp1,intTemp2);
+	update_coordinates(hijo2,intTemp1,intTemp2);*/
 		
 
 		

@@ -72,7 +72,7 @@ void copy_ind (NSGA2Type *nsga2Params, individual *ind1, individual *ind2)
 
 
     for(int i=0; i<nsga2Params->sequence_len_ns; i++) {
-           for(j=0; j<2; j++) {
+           for(j=0; j<nsga2Params->dimensions_ns; j++) {
             //printf("%f\t",ind1->coordinates[i][j]);
             ind2->coordinates[i][j] = ind1->coordinates[i][j];
             

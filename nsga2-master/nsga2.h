@@ -75,6 +75,7 @@ typedef struct NSGA2Type
     int sequence_len_ns;               
     int optimalHHtc_ns;
     int encoding_len_ns;
+    int dimensions_ns;
     int nreal;
     int nbin;
     int nobj;
@@ -173,6 +174,7 @@ void test_problem (double *xreal,  double *obj, double *constr);
 void assign_rank_and_crowding_distance (NSGA2Type *nsga2Params, population *new_pop);
 
 void report_pop (NSGA2Type *nsga2Params, population *pop, FILE *fpt);
+void report_pop_coor(NSGA2Type *nsga2Params,  population *pop, FILE *fpt);
 void report_pop_here (NSGA2Type *nsga2Params, population *pop);
 void report_feasible (NSGA2Type *nsga2Params, population *pop, FILE *fpt);
 void report_ind (individual *ind, FILE *fpt);
@@ -201,4 +203,5 @@ void Muta(individual *parent1);
 void print_ind(NSGA2Type *nsga2Params,individual *ind);
 void print_pop(NSGA2Type *nsga2Params,population *pop,int size);
 void Prints(individual *child1, individual *child2);
+char * cross(int type);
 # endif
