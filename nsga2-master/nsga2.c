@@ -15,6 +15,7 @@ FILE *fpt3;
 //FILE *fpt4;
 //FILE *fpt5;
 //FILE *fpt6;
+//FILE *fpt7;
 FILE *gp;
 population *parent_pop;
 population *child_pop;
@@ -350,7 +351,6 @@ NSGA2Type ReadParameters(int argc, char **argv){
 }
 
 
-
 void InitNSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
 {
     //int i;
@@ -366,8 +366,10 @@ void InitNSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
     // Initialize the files...
     //char initial[]="/home/servando/Documents/Frankenstein/Resu/output/a1_initial_pop.out";
     
-    char final[150]="/home/servando/Documents/Frankenstein/Resu/";
-    char best[150]="/home/servando/Documents/Frankenstein/Resu/";
+    char final[150]="/home/servando/Documents/Frankenstein/Resu/test/";
+    char best[150]="/home/servando/Documents/Frankenstein/Resu/test/";
+    
+
     //char final[150]="Dec/Cycle/final/a_final_pop.out";
     //char best[150]="Dec/Cycle/best/a_best_pop.out";
 
@@ -377,28 +379,40 @@ void InitNSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
     char t[]="_";
     strcat( final, evaluation_strategy );
     strcat( best, evaluation_strategy );
+    
 
-   strcat( final, cruce_promblema );
-   strcat( best, cruce_promblema );
+    strcat( final, cruce_promblema );
+    strcat( best, cruce_promblema );
+    
 
     strcat( final, "/final/a_final_pop.out" );
     strcat( best, "/best/a_best_pop.out" );
     
+    
     //strcat( initial, No_problema );
     strcat( final, No_problema );
     strcat( best, No_problema );
+    
     //strcat( all, No_problema );
     //strcat( params, No_problema );
     //strcat( coor, No_problema );
 
     strcat( final, t );
     strcat( best, t );
+    
     //strcat( all, t );
     //strcat( coor, t );
      
     //strcat( initial, No_archivo );
     strcat( final, No_archivo );
     strcat( best, No_archivo );
+    /*char bestEnco[190]="/home/servando/Documents/Frankenstein/Resu/test/";
+    strcat( bestEnco, evaluation_strategy );
+    strcat( bestEnco, cruce_promblema );
+    strcat( bestEnco, "/best_en/a_best_pop.out" );
+    strcat( bestEnco, No_problema );
+    strcat( bestEnco, t );
+    strcat( bestEnco, No_archivo );*/
 
     //printf("%s\n", best);
     //strcat( all, No_archivo );
@@ -408,12 +422,14 @@ void InitNSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
     //fpt1 = fopen(initial,"w");
     fpt2 = fopen(final,"w");
     fpt3 = fopen(best,"w"); 
+    //fpt7 = fopen(bestEnco,"w"); 
     //fpt4 = fopen(all,"w");
     //fpt5 = fopen(params,"w");
     //fpt6 = fopen(coor,"w");
     //fprintf(fpt1,"#\tThis file contains the data of initial population\n");
     fprintf(fpt2,"#\tThis file contains the data of final population\n");
     fprintf(fpt3,"#\tThis file contains the data of final feasible population (if found)\n");
+    //fprintf(fpt7,"#\tThis file contains the encodings\n");
     /*fprintf(fpt4,"#\tThis file contains the data of all generations\n");
     fprintf(fpt5,"#\tThis file contains information about inputs as read by the program\n");*/
     //fprintf(fpt6,"#\tThis file contains the coordinates of all generations\n");/*
@@ -479,13 +495,13 @@ void InitNSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
     // Preparing first Population
     randomize(nsga2Params->seed);
    
-initialize_pop (nsga2Params,  parent_pop);
+    initialize_pop (nsga2Params,  parent_pop);
     
     /*printf("\n Initialization done, now performing first generation");
     printf("\n");*/
     //decode_pop(nsga2Params, parent_pop);
     //evaluate_pop (nsga2Params, parent_pop, inp, out);
-assign_rank_and_crowding_distance (nsga2Params, parent_pop);
+    assign_rank_and_crowding_distance (nsga2Params, parent_pop);
 
     
     //printf("///////////////////////\n");
@@ -505,10 +521,11 @@ assign_rank_and_crowding_distance (nsga2Params, parent_pop);
     //fflush(fpt1);
     fflush(fpt2);
     fflush(fpt3);
+    //fflush(fpt7);
     //fflush(fpt4);
     /*fflush(fpt5);*/
     //fflush(fpt6);
-    
+    //report_pop_here(nsga2Params,parent_pop);
 }
 
 
@@ -524,7 +541,6 @@ int NSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
        
         
         selection (nsga2Params,  parent_pop, child_pop);
-        
         //printf("out Selection\n");
         //report_pop_here(nsga2Params, child_pop);
         //printf("in\n");
@@ -546,13 +562,13 @@ int NSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
 
         fill_nondominated_sort (nsga2Params,  mixed_pop, parent_pop);
 
-//report_pop_here(nsga2Params, parent_pop);
+    //report_pop_here(nsga2Params, parent_pop);
         //printf("////////////new pop//////////////\n");
         //report_pop_here(nsga2Params, parent_pop);
         //print_pop(nsga2Params,parent_pop,nsga2Params->popsize); 
         //printf("\n");
         //report_pop_here(nsga2Params, parent_pop);
-    //run .5 /home/servando/Documents/Multiobjetivizacion/Lattices/2D_Square.lat /home/servando/Documents/Multiobjetivizacion/Instances/2D_Square/2d4.hp MO DEC2 DYN30 2 200 3 2 2 .9 .5 4 2
+    //run .5 /home/servando/Documents/Multiobjetivizacion/Lattices/2D_Square.lat /home/servando/Documents/Multiobjetivizacion/Instances/2D_Square/2d10.hp MO LOCALITY DYN30 45 200 100 2 2 .9 .5 4 2 2
 
         /* Comment following four lines if information for all
          generations is not desired, it will speed up the execution */
@@ -567,10 +583,12 @@ int NSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
         //printf("\n -- Generation %d --", i);
         //print_pop(nsga2Params,parent_pop,nsga2Params->popsize);
     }
-printf("\n Generations finished, now reporting solutions\n");
+    printf("\n Generations finished, now reporting solutions\n");
 
     report_pop(nsga2Params,  parent_pop,fpt2);
     report_feasible(nsga2Params,  parent_pop,fpt3);
+    //report_pop_enco(nsga2Params,  parent_pop,fpt7);
+
     
 
 
@@ -591,6 +609,7 @@ printf("\n Generations finished, now reporting solutions\n");
     //fflush(fpt1);
     fflush(fpt2);
     fflush(fpt3);
+    //fflush(fpt7);
     //fflush(fpt4);
     //fflush(fpt5);
     //fflush(fpt6);
@@ -600,6 +619,7 @@ printf("\n Generations finished, now reporting solutions\n");
     //fclose(fpt4);
     //fclose(fpt5);
     //fclose(fpt6);
+    //fclose(fpt7);
 
     if (nsga2Params->choice!=0)
     {
@@ -807,6 +827,41 @@ void Muta(individual *parent1){
 }   
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void type_crooss(struct conformation_def * current_solution,struct conformation_def * current_solution2,struct conformation_def * hijo1,struct conformation_def * hijo2){
+    
+    switch(type_Crossover)
+    {
+        case 0:
+                //printf("cycle\n");
+        return cruce_Cycle(current_solution,current_solution2,hijo1,hijo2);
+        break;
+        case 1:
+            //printf("cruce\n");
+        return cruce(current_solution,current_solution2,hijo1,hijo2);
+        break;
+
+        case 2:
+            //printf("Static\n");
+        return cruce_static(current_solution,current_solution2,hijo1,hijo2);
+        break;
+
+        case 3:
+            //printf("Non_wrap\n");
+        return NON_WRAPPING_ORDER_CROSSOVER(current_solution,current_solution2,hijo1,hijo2);
+        break;
+
+        case 4:
+               //printf("One\n");
+        return  cruce_one_point(current_solution,current_solution2,hijo1,hijo2);
+        break;
+
+        default:
+           // printf("two\n");
+        return cruce_two_point(current_solution,current_solution2,hijo1,hijo2);
+        break;
+    }
+}
+
 void Cruc(individual *parent1, individual *parent2, individual *child1, individual *child2){
 
     
@@ -823,42 +878,12 @@ void Cruc(individual *parent1, individual *parent2, individual *child1, individu
 
     a_psp(parent2,&current_solution2);  
         
-
-    switch(type_Crossover)
-    {
-        case 0:
-                //printf("cycle\n");
-        return cruce_Cycle(&current_solution,&current_solution2,&hijo1,&hijo2);
-        break;
-        case 1:
-            //printf("cruce\n");
-        return cruce(&current_solution,&current_solution2,&hijo1,&hijo2);
-        break;
-
-        case 2:
-            //printf("Static\n");
-        return cruce_static(&current_solution,&current_solution2,&hijo1,&hijo2);
-        break;
-
-        case 3:
-            //printf("Non_wrap\n");
-        return NON_WRAPPING_ORDER_CROSSOVER(&current_solution,&current_solution2,&hijo1,&hijo2);
-        break;
-
-        case 4:
-               //printf("One\n");
-        return  cruce_one_point(&current_solution,&current_solution2,&hijo1,&hijo2);
-        break;
-
-        default:
-           // printf("two\n");
-        return cruce_two_point(&current_solution,&current_solution2,&hijo1,&hijo2);
-        break;
-    }
+    type_crooss(&current_solution,&current_solution2,&hijo1,&hijo2);
 
     evaluate_conformation(&hijo1);
     evaluate_conformation(&hijo2);
 
+    
 
     /*printf("hijo1\n");
     print_conformation(&hijo1);
@@ -868,9 +893,9 @@ void Cruc(individual *parent1, individual *parent2, individual *child1, individu
     a_ind(child1,&hijo1);
     a_ind(child2,&hijo2);
 
-    //print_conformation_compact(&hijo1);
-
-    //print_conformation_compact(&hijo2);
+    /*print_conformation_compact(&hijo1);
+    print_conformation_compact(&hijo2);
+    */
 
     free_memory_conformation(&current_solution);
     free_memory_conformation(&hijo1);
@@ -893,47 +918,44 @@ void print_pop(NSGA2Type *nsga2Params,population *pop,int size){
 void print_ind(NSGA2Type *nsga2Params,individual *ind){
     int i;
     
-    printf("\nRank: %i\n",ind->rank );
+    
     //printf("constr_violation: %f\n",ind->constr_violation);
 
     /*printf("Xreal:\t");
     for (i = 0; i < nsga2Params->nreal; ++i) printf("%f\t", ind->xreal[i]);*/
 
-        printf("\nObjetivos: \t");
+        /*printf("\nObjetivos: \t");
     for (i = 0; i < nsga2Params->nobj; ++i)
-        printf("%f\t", ind->obj[i]);
-
-        printf("\ncrowding_distance: %.2f\n", ind->crowd_dist);
+        printf("%f\t", ind->obj[i]);*/
 
     // Absolute encoding
     printf("\nAbsolute encoding: ");
     /*if (letters)*/
-        for(i=0; i<encoding_len; i++) printf("%c ", letter[ind->absolute_encoding[i]]);
+        for(i=0; i<encoding_len; i++) printf("%c\t", letter[ind->absolute_encoding[i]]);
     /*else*/
-    printf("\nAbsolute encoding: ");
+    /*printf("\nAbsolute encoding: ");
         for(i=0; i<encoding_len; i++) printf("%d ", ind->absolute_encoding[i]);
-
-    
-
     
     // Coordinates
-    /*printf("\n\nCoordinates: \n");
+    printf("\n\nCoordinates: \n");
     for(i=0; i<sequence_len; i++){ 
         //printf("[\t");
         for(int j=0; j<dimensions; j++) printf("%.2lf\t", ind->coordinates[i][j]);
         //printf("]");
         printf("\n");
-    }*/
+    }
     
     printf("\nObjectives: [ ");
     for(i=0; i<n_objectives; i++) printf("%lf ", ind->objectives[i]);  
     printf("]\n");
     printf("\nHHtc: %d\n", ind->HHtc);
     printf("Valid: %d\n", ind->valid); 
+    printf("\ncrowding_distance: %.2f\n", ind->crowd_dist);
+    printf("\nRank: %i\n",ind->rank );
 
-    /*printf("\nConformation\n");
+    printf("\nConformation\n");
     for(i=0; i<ind->HHtc; i++){        
-        printf("%i\n", ind->contacts[i][0]); 
+        printf("%i\t", ind->contacts[i][0]); 
         printf("%i\n", ind->contacts[i][1]);  
     }*/
 }

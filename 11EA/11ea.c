@@ -42,16 +42,15 @@ void do_11ea(){
 	
 	
 	evaluate_conformation(&current_solution);	
-	//print_conformation(&current_solution);
+	print_conformation(&current_solution);
 
 	//cruce_Cycle();
-	/*mutation(&current_solution, &mutate);
+	mutation(&current_solution, &mutate);
 	print_conformation(&mutate);
-	printf("%i\n", i);
+	//printf("%i\n", i);
 
-	}*/
 
-	
+	/*
 	generate_valid_random_conformation(&mutate);
 	evaluate_conformation(&mutate);
 	
@@ -62,8 +61,8 @@ void do_11ea(){
 	//cruce_static(&current_solution,&mutate,&hijo1,&hijo2);
 	//cruce_Cycle(&current_solution,&mutate,&hijo1,&hijo2);
 	//NON_WRAPPING_ORDER_CROSSOVER(&current_solution,&mutate,&hijo1,&hijo2);
-	cruce_one_point(&current_solution,&mutate,&hijo1,&hijo2);
-	cruce_two_point(&current_solution,&mutate,&hijo1,&hijo2);
+	//cruce_one_point(&current_solution,&mutate,&hijo1,&hijo2);
+	//cruce_two_point(&current_solution,&mutate,&hijo1,&hijo2);
 
 	evaluate_conformation(&hijo1);
 	
@@ -71,7 +70,7 @@ void do_11ea(){
 
 	evaluate_conformation(&hijo2);
 	
-	print_conformation(&hijo2);
+	print_conformation(&hijo2);*/
 	
 }	
 

@@ -149,8 +149,9 @@ void free_memory_conformation(struct conformation_def *conformation){
 	free(conformation->objectives);
 	for(i=0; i<sequence_len; i++)  free( conformation->coordinates[i] );
 	free( conformation->coordinates );
-	for(i=0; i<2*optimalHHtc; i++) free( conformation->contacts[i] );
+	for(i=0; i<2*optimalHHtc; i++) {free( conformation->contacts[i] );free( conformation->contactsP[i] );}
 	free( conformation->contacts );
+	free( conformation->contactsP );
 
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

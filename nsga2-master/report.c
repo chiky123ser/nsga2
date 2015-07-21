@@ -51,6 +51,27 @@ void report_pop (NSGA2Type *nsga2Params,  population *pop, FILE *fpt)
     return;
 }
 
+
+void report_pop_enco(NSGA2Type *nsga2Params,  population *pop, FILE *fpt)
+{
+       int i, j;
+    for (j=0; j<nsga2Params->popsize; j++)
+    {
+        for(i=0; i<nsga2Params->encoding_len_ns; i++) {
+            if (pop->ind[j].rank==1)
+            {
+                fprintf(fpt,"%i\t", pop->ind[j].absolute_encoding[i]);
+            }
+            
+        }
+
+
+        fprintf(fpt,"\n");
+
+    }
+    return;
+}
+
 void report_pop_coor(NSGA2Type *nsga2Params,  population *pop, FILE *fpt)
 {
     int i, j,k;

@@ -71,7 +71,7 @@ void generate_valid_random_conformation(struct conformation_def *conformation){
 
 //funcion que evalua si el random devuelto no se encuentra ya en la lista de indices randoms
 int isValidTemp(int intTemp,int *cr){
-		for (int i = 0; i < encoding_len; ++i)
+	for (int i = 0; i < encoding_len; ++i)
 		{
 			if (cr[i]==intTemp)
 			{
@@ -294,7 +294,6 @@ void cruce_Cycle(struct conformation_def *current_solution, struct conformation_
 	cr=NULL;
 	
 }
-
 
 
 void NON_WRAPPING_ORDER_CROSSOVER(struct conformation_def *current_solution, struct conformation_def *current_solution2,struct conformation_def *hijo1, struct conformation_def *hijo2){

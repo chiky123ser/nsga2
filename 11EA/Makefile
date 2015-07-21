@@ -2,7 +2,7 @@
 CC = g++
 
 # Flags
-FF =  -Wall
+FF =  -Wall -g
 
 all:  
 	$(CC) $(FF) main.c -o 11ea
