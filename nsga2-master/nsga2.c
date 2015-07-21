@@ -13,9 +13,9 @@
 FILE *fpt2;
 FILE *fpt3;
 //FILE *fpt4;
-//FILE *fpt5;
+FILE *fpt5;
 //FILE *fpt6;
-//FILE *fpt7;
+FILE *fpt7;
 FILE *gp;
 population *parent_pop;
 population *child_pop;
@@ -366,16 +366,17 @@ void InitNSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
     // Initialize the files...
     //char initial[]="/home/servando/Documents/Frankenstein/Resu/output/a1_initial_pop.out";
     
-    char final[150]="/home/servando/Documents/Frankenstein/Resu/test/";
-    char best[150]="/home/servando/Documents/Frankenstein/Resu/test/";
-    
-
+    char final[150]="/home/servando/Documents/Frankenstein/Resu/test2/";
+    char best[150]="/home/servando/Documents/Frankenstein/Resu/test2/";
+    char bestEnco[192]="/home/servando/Documents/Frankenstein/Resu/test2/";
+    char params[150]="/home/servando/Documents/Frankenstein/Resu/test2/";
     //char final[150]="Dec/Cycle/final/a_final_pop.out";
     //char best[150]="Dec/Cycle/best/a_best_pop.out";
 
     //char all[100]="a_all_pop.out";
-    //char params[]="/home/servando/Documents/Frankenstein/Resu/output/a1_params.out";
+    
     //char coor[100]="/home/servando/Documents/Frankenstein/Resu/output/a_coor_pop.out";
+
     char t[]="_";
     strcat( final, evaluation_strategy );
     strcat( best, evaluation_strategy );
@@ -406,13 +407,21 @@ void InitNSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
     //strcat( initial, No_archivo );
     strcat( final, No_archivo );
     strcat( best, No_archivo );
-    /*char bestEnco[190]="/home/servando/Documents/Frankenstein/Resu/test/";
+
+    
     strcat( bestEnco, evaluation_strategy );
     strcat( bestEnco, cruce_promblema );
-    strcat( bestEnco, "/best_en/a_best_pop.out" );
+    strcat( bestEnco, "/best_enco/a_best_pop.out" );
     strcat( bestEnco, No_problema );
     strcat( bestEnco, t );
-    strcat( bestEnco, No_archivo );*/
+    strcat( bestEnco, No_archivo );
+
+    strcat( params, evaluation_strategy );
+    strcat( params, cruce_promblema );
+    strcat( params, "/params/a1_params.out" );
+    strcat( params, No_problema );
+    strcat( params, t );
+    strcat( params, No_archivo );
 
     //printf("%s\n", best);
     //strcat( all, No_archivo );
@@ -422,48 +431,32 @@ void InitNSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
     //fpt1 = fopen(initial,"w");
     fpt2 = fopen(final,"w");
     fpt3 = fopen(best,"w"); 
-    //fpt7 = fopen(bestEnco,"w"); 
+    fpt7 = fopen(bestEnco,"w"); 
     //fpt4 = fopen(all,"w");
-    //fpt5 = fopen(params,"w");
+    fpt5 = fopen(params,"w");
     //fpt6 = fopen(coor,"w");
     //fprintf(fpt1,"#\tThis file contains the data of initial population\n");
     fprintf(fpt2,"#\tThis file contains the data of final population\n");
     fprintf(fpt3,"#\tThis file contains the data of final feasible population (if found)\n");
-    //fprintf(fpt7,"#\tThis file contains the encodings\n");
+    fprintf(fpt5,"#\tThis file contains information about inputs as read by the program\n");
+    fprintf(fpt7,"#\tThis file contains the encodings\n");
+
     /*fprintf(fpt4,"#\tThis file contains the data of all generations\n");
-    fprintf(fpt5,"#\tThis file contains information about inputs as read by the program\n");*/
-    //fprintf(fpt6,"#\tThis file contains the coordinates of all generations\n");/*
-    /*fprintf(fpt5,"\n Population size = %d",nsga2Params->popsize);
+    fprintf(fpt6,"#\tThis file contains the coordinates of all generations\n");*/
+
+    fprintf(fpt5,"\n Population size = %d",nsga2Params->popsize);
     fprintf(fpt5,"\n Number of generations = %d",nsga2Params->ngen);
     fprintf(fpt5,"\n Number of objective functions = %d",nsga2Params->nobj);
     //fprintf(fpt5,"\n Number of constraints = %d",nsga2Params->ncon);
-    fprintf(fpt5,"\n Number of real variables = %d",nsga2Params->nreal);*/
-    /*if (nsga2Params->nreal!=0)
+    fprintf(fpt5,"\n Number of real variables = %d",nsga2Params->nreal);
+    if (nsga2Params->nreal!=0)
     {
-        for (i=0; i<nsga2Params->nreal; i++)
-        {
-            fprintf(fpt5,"\n Lower limit of real variable %d = %e",i+1,nsga2Params->min_realvar[i]);
-            fprintf(fpt5,"\n Upper limit of real variable %d = %e",i+1,nsga2Params->max_realvar[i]);
-        }
+
         fprintf(fpt5,"\n Probability of crossover of real variable = %e",nsga2Params->pcross_real);
         fprintf(fpt5,"\n Probability of mutation of real variable = %e",nsga2Params->pmut_real);
-        fprintf(fpt5,"\n Distribution index for crossover = %e",nsga2Params->eta_c);
-        fprintf(fpt5,"\n Distribution index for mutation = %e",nsga2Params->eta_m);
-    }*/
+    }
 
-    /*fprintf(fpt5,"\n Number of binary variables = %d",nsga2Params->nbin);
-    if (nsga2Params->nbin!=0)
-    {
-        for (i=0; i<nsga2Params->nbin; i++)
-        {
-            fprintf(fpt5,"\n Number of bits for binary variable %d = %d",i+1,nsga2Params->nbits[i]);
-            fprintf(fpt5,"\n Lower limit of binary variable %d = %e",i+1,nsga2Params->min_binvar[i]);
-            fprintf(fpt5,"\n Upper limit of binary variable %d = %e",i+1,nsga2Params->max_binvar[i]);
-        }
-        fprintf(fpt5,"\n Probability of crossover of binary variable = %e",nsga2Params->pcross_bin);
-        fprintf(fpt5,"\n Probability of mutation of binary variable = %e",nsga2Params->pmut_bin);
-    }*/
-    //fprintf(fpt5,"\n Seed for random number generator = %e",nsga2Params->seed);
+    fprintf(fpt5,"\n Seed for random number generator = %e",nsga2Params->seed);
     /*nsga2Params->bitlength = 0;
     if (nsga2Params->nbin!=0)
     {
@@ -521,14 +514,12 @@ void InitNSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
     //fflush(fpt1);
     fflush(fpt2);
     fflush(fpt3);
-    //fflush(fpt7);
+    fflush(fpt7);
     //fflush(fpt4);
-    /*fflush(fpt5);*/
+    fflush(fpt5);
     //fflush(fpt6);
     //report_pop_here(nsga2Params,parent_pop);
 }
-
-
 
 
 int NSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
@@ -587,7 +578,7 @@ int NSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
 
     report_pop(nsga2Params,  parent_pop,fpt2);
     report_feasible(nsga2Params,  parent_pop,fpt3);
-    //report_pop_enco(nsga2Params,  parent_pop,fpt7);
+    report_pop_enco(nsga2Params,  parent_pop,fpt7);
 
     
 
@@ -609,17 +600,17 @@ int NSGA2(NSGA2Type *nsga2Params, void *inp, void *out)
     //fflush(fpt1);
     fflush(fpt2);
     fflush(fpt3);
-    //fflush(fpt7);
+    fflush(fpt7);
     //fflush(fpt4);
-    //fflush(fpt5);
+    fflush(fpt5);
     //fflush(fpt6);
     //fclose(fpt1);
     fclose(fpt2);
     fclose(fpt3);
     //fclose(fpt4);
-    //fclose(fpt5);
+    fclose(fpt5);
     //fclose(fpt6);
-    //fclose(fpt7);
+    fclose(fpt7);
 
     if (nsga2Params->choice!=0)
     {
@@ -671,8 +662,6 @@ void print_nsga2Params(NSGA2Type *nsga2Params){
     }
     printf("\n Probability of crossover entered is : %e",nsga2Params->pcross_real);
     printf("\n Probability of mutation entered is : %e",nsga2Params->pmut_real);
-    printf("\n The eta_c entered is : %e",nsga2Params->eta_c);
-    printf("\n The eta_m entered is : %e",nsga2Params->eta_m);
     if (nsga2Params->nbin != 0){
         printf ("\n number of binary variables entered is : %d",nsga2Params->nbin);
         printf("\n Probability of crossover entered is : %e",nsga2Params->pcross_bin);
@@ -959,6 +948,7 @@ void print_ind(NSGA2Type *nsga2Params,individual *ind){
         printf("%i\n", ind->contacts[i][1]);  
     }*/
 }
+
 void Prints(individual *child1, individual *child2){
     struct conformation_def current_solution,current_solution2;
 
